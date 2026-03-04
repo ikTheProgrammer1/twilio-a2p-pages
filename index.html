@@ -3,27 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nicolas Matta Real Estate SMS Assistant</title>
+  <title>SMS Consent & CTA | Nicolas Matta Real Estate SMS Assistant</title>
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #f3f7fd;
       --card: #ffffff;
-      --text: #122033;
-      --muted: #4d5f77;
-      --accent: #0f62fe;
-      --border: #dbe4f0;
+      --panel: #f7fbff;
+      --text: #0f2034;
+      --muted: #455a75;
+      --accent: #145ef2;
+      --border: #d2def0;
+      --pill: #e5efff;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 45%, #f9fbff 100%);
+      background: radial-gradient(circle at top right, #e3edff 0%, var(--bg) 45%, #f9fbff 100%);
       color: var(--text);
       line-height: 1.5;
     }
     main {
-      max-width: 760px;
-      margin: 48px auto;
+      max-width: 900px;
+      margin: 36px auto;
       padding: 0 20px;
     }
     .card {
@@ -31,41 +33,137 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 28px;
-      box-shadow: 0 10px 28px rgba(12, 31, 60, 0.08);
+      box-shadow: 0 10px 30px rgba(12, 31, 60, 0.08);
     }
-    h1 { margin: 0 0 12px; font-size: 1.85rem; }
-    p { margin: 0 0 16px; color: var(--muted); }
-    ul { margin: 0; padding-left: 18px; }
-    li { margin-bottom: 10px; }
+    h1 { margin: 0 0 10px; font-size: 2rem; }
+    h2 { margin: 0 0 12px; font-size: 1.15rem; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    .badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--pill);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .phone {
+      margin: 8px 0 18px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+    .phone .label {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .phone a {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .cta {
+      margin-top: 6px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+    .cta ul { margin: 0; padding-left: 20px; }
+    .cta li { margin: 0 0 10px; color: var(--muted); }
+    .cta li:last-child { margin-bottom: 0; }
+    .example {
+      margin-top: 20px;
+      padding: 16px;
+      border: 1px dashed #bfd0ea;
+      border-radius: 10px;
+      background: #fbfdff;
+    }
+    .example p { margin: 0 0 8px; }
+    .example code {
+      display: block;
+      white-space: pre-wrap;
+      padding: 10px;
+      border-radius: 8px;
+      background: #eef4ff;
+      color: #1d3f7a;
+      font-size: 0.92rem;
+    }
+    .links {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
     a {
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
     }
     a:hover { text-decoration: underline; }
-    .paths {
-      margin-top: 22px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      font-size: 0.95rem;
+    footer {
+      margin-top: 18px;
       color: var(--muted);
+      font-size: 0.93rem;
+    }
+    @media (max-width: 640px) {
+      main { padding: 0 14px; }
+      .card { padding: 20px; }
+      h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
   <main>
     <section class="card">
+      <div class="badge">Public SMS Consent & CTA Page</div>
       <h1>Nicolas Matta Real Estate SMS Assistant</h1>
       <p>
-        Public compliance pages for the Twilio A2P registration of the SMS customer-care program.
+        1:1 customer-care SMS program for real estate inquiries and scheduling coordination.
+        This is a conversational, user-initiated messaging program and is not used for promotional campaigns or marketing blasts.
       </p>
-      <ul>
-        <li><a href="/twilio-a2p-pages/privacy/">Privacy Policy</a></li>
-        <li><a href="/twilio-a2p-pages/terms/">Terms of Service</a></li>
-      </ul>
-      <div class="paths">
-        Route paths: <code>/privacy</code> and <code>/terms</code>
+
+      <div class="phone">
+        <p class="label"><strong>Text this phone number to opt in:</strong></p>
+        <a href="tel:+10000000000">+1 (000) 000-0000</a>
       </div>
+
+      <section class="cta" aria-label="SMS Program Disclosures">
+        <h2>How SMS Consent Works</h2>
+        <ul>
+          <li><strong>Program purpose:</strong> 1:1 customer-care SMS for real estate inquiries and scheduling.</li>
+          <li><strong>How to opt in:</strong> Text us first to start the conversation.</li>
+          <li><strong>Message frequency:</strong> Varies by conversation, up to 10 messages per week.</li>
+          <li><strong>Fees:</strong> Message &amp; data rates may apply.</li>
+          <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> to opt out.</li>
+          <li><strong>Help:</strong> Reply <strong>HELP</strong> for help or contact <a href="mailto:nico.matta1221@yahoo.com">nico.matta1221@yahoo.com</a>.</li>
+          <li><strong>Carrier disclaimer:</strong> Carriers are not liable for delayed or undelivered messages.</li>
+          <li><strong>Purchase note:</strong> Consent is not required to purchase.</li>
+        </ul>
+      </section>
+
+      <section class="example" aria-label="Example Customer-Care Message">
+        <p><strong>Example customer-care reply:</strong></p>
+        <code>Hi, this is Nicolas Matta Real Estate SMS Assistant. Here is the property you asked about: https://example.com/listings/123-main-st. Reply STOP to opt out, HELP for help.</code>
+      </section>
+
+      <div class="links">
+        <a href="/twilio-a2p-pages/terms/">Terms of Service</a>
+        <a href="/twilio-a2p-pages/privacy/">Privacy Policy</a>
+      </div>
+
+      <footer>
+        Public policy URLs:
+        <a href="https://iktheprogrammer1.github.io/twilio-a2p-pages/terms/">https://iktheprogrammer1.github.io/twilio-a2p-pages/terms/</a>
+        |
+        <a href="https://iktheprogrammer1.github.io/twilio-a2p-pages/privacy/">https://iktheprogrammer1.github.io/twilio-a2p-pages/privacy/</a>
+      </footer>
     </section>
   </main>
 </body>
