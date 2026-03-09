@@ -177,6 +177,20 @@
       align-items: center;
       margin-top: 14px;
     }
+    .status-message {
+      display: none;
+      margin-top: 14px;
+      padding: 13px 14px;
+      border: 1px solid rgba(13, 95, 87, 0.18);
+      border-radius: 14px;
+      background: rgba(13, 95, 87, 0.08);
+      color: var(--accent-strong);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .status-message.is-visible {
+      display: block;
+    }
     button {
       border: 0;
       border-radius: 999px;
@@ -305,7 +319,7 @@
           <h2 id="opt-in-heading">SMS Consent Form</h2>
           <p>Complete this form to request 1:1 SMS follow-up from Nicolas Matta Real Estate SMS Assistant.</p>
 
-          <form action="#" method="post">
+          <form id="sms-opt-in-form" action="#" method="post">
             <div class="form-grid">
               <div class="field">
                 <label for="full-name">Name</label>
@@ -337,6 +351,10 @@
                 <a href="/twilio-a2p-pages/privacy/">Privacy Policy</a>
               </div>
             </div>
+
+            <p id="form-success-message" class="status-message" role="status" aria-live="polite">
+              Thanks. Your SMS consent request has been submitted successfully.
+            </p>
           </form>
         </section>
       </div>
@@ -366,5 +384,15 @@
       </div>
     </section>
   </main>
+  <script>
+    const smsOptInForm = document.getElementById("sms-opt-in-form");
+    const formSuccessMessage = document.getElementById("form-success-message");
+
+    smsOptInForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      formSuccessMessage.classList.add("is-visible");
+      smsOptInForm.reset();
+    });
+  </script>
 </body>
 </html>
