@@ -3,167 +3,367 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SMS Consent & CTA | Nicolas Matta Real Estate SMS Assistant</title>
+  <title>Website SMS Opt-In | Nicolas Matta Real Estate SMS Assistant</title>
   <style>
     :root {
-      --bg: #f3f7fd;
-      --card: #ffffff;
-      --panel: #f7fbff;
-      --text: #0f2034;
-      --muted: #455a75;
-      --accent: #145ef2;
-      --border: #d2def0;
-      --pill: #e5efff;
+      --bg: #eef4f8;
+      --card: rgba(255, 255, 255, 0.94);
+      --panel: #f8fbfd;
+      --text: #152537;
+      --muted: #55667a;
+      --accent: #0d5f57;
+      --accent-strong: #083d39;
+      --border: rgba(21, 37, 55, 0.12);
+      --shadow: 0 20px 60px rgba(10, 28, 45, 0.12);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top right, #e3edff 0%, var(--bg) 45%, #f9fbff 100%);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(13, 95, 87, 0.18), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(193, 224, 229, 0.7), transparent 30%),
+        linear-gradient(180deg, #f7fafc 0%, var(--bg) 100%);
       line-height: 1.5;
     }
     main {
-      max-width: 900px;
-      margin: 36px auto;
-      padding: 0 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 18px 56px;
     }
-    .card {
+    .shell {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(12, 31, 60, 0.08);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
     }
-    h1 { margin: 0 0 10px; font-size: 2rem; }
-    h2 { margin: 0 0 12px; font-size: 1.15rem; }
-    p { margin: 0 0 14px; color: var(--muted); }
-    .badge {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 5px 10px;
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      padding: 28px;
+    }
+    .intro {
+      padding: 8px 6px 0 6px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 16px;
+      padding: 7px 12px;
       border-radius: 999px;
-      background: var(--pill);
-      color: var(--accent);
+      background: rgba(13, 95, 87, 0.1);
+      color: var(--accent-strong);
+      font-size: 0.8rem;
       font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-    .phone {
-      margin: 8px 0 18px;
+    h1 {
+      margin: 0 0 14px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(2.1rem, 4vw, 3.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+    .lede {
+      margin: 0 0 18px;
+      max-width: 36rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .program-note {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .program-note div {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(248, 251, 253, 0.95);
+    }
+    .label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .form-card,
+    .details-card,
+    .example-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--panel);
+    }
+    .form-card {
+      padding: 22px;
+    }
+    .form-card h2,
+    .details-card h2,
+    .example-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+    .form-card p,
+    .details-card p,
+    .example-card p,
+    .details-card li {
+      color: var(--muted);
+    }
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+    .field label {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .field input {
+      width: 100%;
+      padding: 14px 14px;
+      border: 1px solid #bccad8;
+      border-radius: 12px;
+      background: #ffffff;
+      color: var(--text);
+      font: inherit;
+    }
+    .field input:focus {
+      outline: 2px solid rgba(13, 95, 87, 0.16);
+      border-color: var(--accent);
+    }
+    .checkbox-wrap {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 12px;
+      align-items: start;
+      margin-top: 4px;
       padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--panel);
+      border-radius: 14px;
+      background: #ffffff;
     }
-    .phone .label {
-      margin: 0 0 6px;
+    .checkbox-wrap input {
+      margin: 3px 0 0;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+    .checkbox-wrap label {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
     }
-    .phone a {
-      font-size: 1.25rem;
-      font-weight: 800;
+    .checkbox-wrap strong {
+      color: var(--text);
     }
-    .cta {
-      margin-top: 6px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--panel);
-    }
-    .cta ul { margin: 0; padding-left: 20px; }
-    .cta li { margin: 0 0 10px; color: var(--muted); }
-    .cta li:last-child { margin-bottom: 0; }
-    .example {
-      margin-top: 20px;
-      padding: 16px;
-      border: 1px dashed #bfd0ea;
-      border-radius: 10px;
-      background: #fbfdff;
-    }
-    .example p { margin: 0 0 8px; }
-    .example code {
-      display: block;
-      white-space: pre-wrap;
-      padding: 10px;
-      border-radius: 8px;
-      background: #eef4ff;
-      color: #1d3f7a;
-      font-size: 0.92rem;
-    }
-    .links {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
+    .actions {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
     }
-    a {
-      color: var(--accent);
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      color: #ffffff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .policy-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .policy-links a,
+    .footer-links a,
+    .checkbox-wrap a {
+      color: var(--accent-strong);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
     }
-    a:hover { text-decoration: underline; }
-    footer {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.93rem;
+    .policy-links a:hover,
+    .footer-links a:hover,
+    .checkbox-wrap a:hover {
+      text-decoration: underline;
+    }
+    .details {
+      display: grid;
+      gap: 18px;
+      padding: 0 28px 28px;
+    }
+    .details-card,
+    .example-card {
+      padding: 22px;
+    }
+    .details-card ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+    .details-card li {
+      margin-bottom: 10px;
+    }
+    .details-card li:last-child {
+      margin-bottom: 0;
+    }
+    .example-card code {
+      display: block;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: #214f4b;
+      font-size: 0.92rem;
+      white-space: pre-wrap;
+    }
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .footer-links a {
+      display: inline-flex;
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #ffffff;
+    }
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .details {
+        padding: 0 28px 28px;
+      }
     }
     @media (max-width: 640px) {
-      main { padding: 0 14px; }
-      .card { padding: 20px; }
-      h1 { font-size: 1.7rem; }
+      main {
+        padding: 16px 12px 40px;
+      }
+      .hero,
+      .details {
+        padding: 18px;
+      }
+      .form-card,
+      .details-card,
+      .example-card {
+        padding: 18px;
+      }
+      .actions {
+        align-items: stretch;
+      }
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-    <section class="card">
-      <div class="badge">Public SMS Consent & CTA Page</div>
-      <h1>Nicolas Matta Real Estate SMS Assistant</h1>
-      <p>
-        1:1 customer-care SMS program for real estate inquiries and scheduling coordination.
-        This is a conversational, user-initiated messaging program and is not used for promotional campaigns or marketing blasts.
-      </p>
+    <section class="shell">
+      <div class="hero">
+        <div class="intro">
+          <div class="eyebrow">Website SMS Opt-In</div>
+          <h1>Nicolas Matta Real Estate SMS Assistant</h1>
+          <p class="lede">
+            1:1 customer-care SMS for real estate inquiries and scheduling coordination.
+            This program is not used for marketing or promotional blasts.
+          </p>
 
-      <div class="phone">
-        <p class="label"><strong>Text this phone number to opt in:</strong></p>
-        <a href="tel:+17874686047">+1 787 468 6047</a>
+          <div class="program-note">
+            <div>
+              <span class="label">Official opt-in method</span>
+              <span class="value">Submit the website form and check the consent box before sending.</span>
+            </div>
+            <div>
+              <span class="label">Business SMS number</span>
+              <span class="value">+1 787 468 6047</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="form-card" aria-labelledby="opt-in-heading">
+          <h2 id="opt-in-heading">SMS Consent Form</h2>
+          <p>Complete this form to request 1:1 SMS follow-up from Nicolas Matta Real Estate SMS Assistant.</p>
+
+          <form action="#" method="post">
+            <div class="form-grid">
+              <div class="field">
+                <label for="full-name">Name</label>
+                <input id="full-name" name="full_name" type="text" autocomplete="name" placeholder="Jane Doe" required />
+              </div>
+
+              <div class="field">
+                <label for="mobile-phone">Mobile phone number</label>
+                <input id="mobile-phone" name="mobile_phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 787 555 1234" required />
+              </div>
+
+              <div class="field">
+                <label for="email-address">Email address (optional)</label>
+                <input id="email-address" name="email" type="email" autocomplete="email" placeholder="jane@example.com" />
+              </div>
+
+              <div class="checkbox-wrap">
+                <input id="sms-consent" name="sms_consent" type="checkbox" required />
+                <label for="sms-consent">
+                  I agree to receive <strong>1:1 customer-care SMS messages</strong> from <strong>Nicolas Matta Real Estate SMS Assistant</strong> for real estate inquiries and scheduling. Message frequency varies by conversation, up to 10 messages per week. Message and data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help. <a href="/twilio-a2p-pages/terms/">Terms of Service</a> and <a href="/twilio-a2p-pages/privacy/">Privacy Policy</a> apply.
+                </label>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="submit">Submit SMS Consent</button>
+              <div class="policy-links" aria-label="Policy links">
+                <a href="/twilio-a2p-pages/terms/">Terms of Service</a>
+                <a href="/twilio-a2p-pages/privacy/">Privacy Policy</a>
+              </div>
+            </div>
+          </form>
+        </section>
       </div>
 
-      <section class="cta" aria-label="SMS Program Disclosures">
-        <h2>How SMS Consent Works</h2>
-        <ul>
-          <li><strong>Program purpose:</strong> 1:1 customer-care SMS for real estate inquiries and scheduling.</li>
-          <li><strong>How to opt in:</strong> Text us first to start the conversation.</li>
-          <li><strong>Message frequency:</strong> Varies by conversation, up to 10 messages per week.</li>
-          <li><strong>Fees:</strong> Message &amp; data rates may apply.</li>
-          <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> to opt out.</li>
-          <li><strong>Help:</strong> Reply <strong>HELP</strong> for help or contact <a href="mailto:nico.matta1221@yahoo.com">nico.matta1221@yahoo.com</a>.</li>
-          <li><strong>Carrier disclaimer:</strong> Carriers are not liable for delayed or undelivered messages.</li>
-          <li><strong>Purchase note:</strong> Consent is not required to purchase.</li>
-        </ul>
-      </section>
+      <div class="details">
+        <section class="details-card" aria-labelledby="disclosures-heading">
+          <h2 id="disclosures-heading">SMS Program Disclosures</h2>
+          <ul>
+            <li>Message frequency varies by conversation, up to 10 messages per week.</li>
+            <li>Message and data rates may apply.</li>
+            <li>Reply <strong>STOP</strong> to opt out.</li>
+            <li>Reply <strong>HELP</strong> for help or contact <a href="mailto:nico.matta1221@yahoo.com">nico.matta1221@yahoo.com</a>.</li>
+            <li>Carriers are not liable for delayed or undelivered messages.</li>
+            <li>Consent is not required to purchase.</li>
+          </ul>
+        </section>
 
-      <section class="example" aria-label="Example Customer-Care Message">
-        <p><strong>Example customer-care reply:</strong></p>
-        <code>Hi, this is Nicolas Matta Real Estate SMS Assistant. Here is the property you asked about: https://example.com/listings/123-main-st. Reply STOP to opt out, HELP for help.</code>
-      </section>
-
-      <div class="links">
-        <a href="/twilio-a2p-pages/terms/">Terms of Service</a>
-        <a href="/twilio-a2p-pages/privacy/">Privacy Policy</a>
+        <section class="example-card" aria-labelledby="example-heading">
+          <h2 id="example-heading">Example Customer-Care Message</h2>
+          <p>This is an example of the kind of 1:1 customer-care SMS a user may receive after opting in through this form.</p>
+          <code>Hi, this is Nicolas Matta Real Estate SMS Assistant. Here is the property you asked about: https://example.com/listings/123-main-st. Reply STOP to opt out, HELP for help.</code>
+          <div class="footer-links">
+            <a href="/twilio-a2p-pages/terms/">Terms of Service</a>
+            <a href="/twilio-a2p-pages/privacy/">Privacy Policy</a>
+          </div>
+        </section>
       </div>
-
-      <footer>
-        Public policy URLs:
-        <a href="https://iktheprogrammer1.github.io/twilio-a2p-pages/terms/">https://iktheprogrammer1.github.io/twilio-a2p-pages/terms/</a>
-        |
-        <a href="https://iktheprogrammer1.github.io/twilio-a2p-pages/privacy/">https://iktheprogrammer1.github.io/twilio-a2p-pages/privacy/</a>
-      </footer>
     </section>
   </main>
 </body>
